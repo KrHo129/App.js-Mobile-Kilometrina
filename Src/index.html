@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Kilometrina</title>
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="appjs/app.min.css">
+    <link rel="stylesheet" href="src/css/styles.css">
+    <link rel="stylesheet" href="src/css/checkbox.css">
+</head>
+
+<body>
+    <!-- check local storage page -->
+    <div class="app-page" data-page="checkStorage">
+        <div class="hidden js-storage-alert">
+            <div class="app-topbar">
+                <div class="app-title">Kilometrina</div>
+            </div>
+            <div class="app-content">
+                <div class="app-section">
+                    <h2>
+                        Aplikacije ni bilo moč zagnati!
+                    </h2>
+                </div>
+                <div class="app-section">
+                    <p>
+                        Vaš telefon / brskalnik trenutno ne podpira te aplikacije.
+                    </p>
+                    <p>
+                        Prosim <strong>posodobite spletni brskalnik</strong> (Google Chrome) in poiskusite znova.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Home page -->
+    <div class="app-page" data-page="home">
+        <div class="app-topbar">
+            <div class="app-title">
+                Kilometrina
+            </div>
+        </div>
+        <div class="app-content">
+            <div class="app-section js-last-route-div">
+                <p class="subtitle">
+                    Zadnji vnosi:
+                </p>
+                <div class="js-last-routes-list"></div>
+                <div class="app-button blue">Prikaži vse</div>
+            </div>
+            <div class="app-section js-statistics-div">
+                <p class="subtitle">
+                    Statistika:
+                </p>
+                <div class="js-statistics"></div>
+            </div>
+            <div class="app-section">
+                <div class="app-button green" data-target="addNewRoute">
+                    Dodaj novo pot
+                </div>
+            </div>
+            <div class="app-section js-static-route-div">
+                <p class="subtitle">
+                    Stalne poti:
+                </p>
+                <ul class="app-list js-static-route-list">
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add new route -->
+    <div class="app-page" data-page="addNewRoute">
+        <div class="app-topbar">
+            <div class="left app-button" data-back data-autotitle></div>
+            <div class="app-title">
+                Dodaj novo pot
+            </div>
+        </div>
+        <div class="app-content">
+            <div class="app-section">
+                <div class="js-input-section">
+                    <label for="vehicle">
+                        Vozilo
+                    </label>
+                    <input type="text" id="vehicle" class="app-input js-vehicle" placeholder="Vnesite vozilo">
+                    <div class="prefab-list js-prefab"></div>
+                </div>
+
+                <div class="js-input-section">
+                    <label for="driver">
+                        Voznik
+                    </label>
+                    <input type="text" id="driver" class="app-input js-driver" placeholder="Vnesite voznika">
+                    <div class="prefab-list js-prefab"></div>
+                </div>
+
+                <div class="js-input-section">
+                    <label for="destination">
+                        Destinacija
+                    </label>
+                    <input type="text" id="destination" class="app-input js-destination"
+                        placeholder="Vnesite destinacijo">
+                    <div class="prefab-list js-prefab"></div>
+                </div>
+            </div>
+
+            <div class="app-section">
+                <label for="kmStart">
+                    Začetni kilometri
+                </label>
+                <input type="number" id="kmStart" class="app-input js-km-start" placeholder="Vnesite št. km">
+                <label for="kmEnd">
+                    Končni kilometri
+                </label>
+                <input type="number" id="kmEnd" class="app-input js-km-end" placeholder="Vnesite št. km">
+                <label for="kmTotal">
+                    Opravljeni kilometri
+                </label>
+                <input type="number" id="kmTotal" class="app-input js-km-total" placeholder="Vnesite št. km">
+            </div>
+            <div class="app-section">
+                <label for="dateStart">
+                    Datum
+                </label>
+                <input type="date" id="dateStart" class="app-input js-date-start" placeholder="Vnesite datum">
+
+                <label for="dateEnd">
+                    Do datuma (opcijsko)
+                </label>
+                <input type="date" id="dateEnd" class="app-input js-date-end" placeholder="Vnesite datum">
+            </div>
+            <div class="app-section">
+                <label for="comments">
+                    Opombe
+                </label>
+                <textarea id="comments" cols="30" rows="3" class="app-input js-comments"
+                    placeholder="Vnesite opombe"></textarea>
+            </div>
+            <div class="app-section">
+                <label class="container">
+                    Dodaj med stalne poti
+                    <input type="checkbox" class="js-add-to-static-routes">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+            <div class="app-section hidden errors js-errors">
+
+            </div>
+            <div class="app-section">
+                <div class="app-button green js-save">Shrani</div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="appjs/zepto.js"></script>
+    <script src="appjs/app.min.js"></script>
+
+    <script src="src/js/slideDownUp.js"></script>
+
+    <script src="src/js/checkStorage.js"></script>
+    <script src="src/js/home.js"></script>
+    <script src="src/js/addNewRoute.js"></script>
+    <script>
+        try {
+            App.load('checkStorage');
+            //App.restore();
+            //App.load('checkStorage');
+        } catch (err) {
+            App.load('checkStorage');
+        }
+    </script>
+</body>
+
+</html>

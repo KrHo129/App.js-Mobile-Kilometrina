@@ -1,0 +1,87 @@
+/* General classes */
+.hidden {
+    display: none;
+}
+
+.app-topbar {
+    background: #2B9;
+}
+
+.subtitle {
+    font-size: larger;
+    padding: 3px;
+}
+
+.card {
+    margin-bottom: 10px;
+    padding: 5px;
+    border-radius: 3px;
+    border: 1px solid rgba(136, 136, 136, 0.5);
+}
+.cardTitle {
+    font-weight: bold;
+}
+
+.statistic-color-indicator {
+    width: 13px;
+    height: 13px;
+    float: left;
+    margin: 1px 5px;
+}
+.color-idicator-bar {
+    width: 100%;
+    height: 20px;
+    margin: 7px 0 15px 0;
+}
+.col1 {
+    background-color: turquoise;
+}
+.col2 {
+    background-color: red;
+}
+.col3 {
+    background-color: blue;
+}
+.col4 {
+    background-color: violet;
+}
+.col5 {
+    background-color: yellowgreen;
+}
+.col6 {
+    background-color: lime;
+}
+.col7 {
+    background-color: slateblue;
+}
+.col8 {
+    background-color: royalblue;
+}
+.col9 {
+    background-color: olive;
+}
+
+/* Inputs */
+.prefab-list {
+    overflow: hidden;
+    display: none;
+    border: 1px solid rgba(136, 136, 136, 0.5);
+    /* border-top: none; */
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.prefab-item {
+    background-color: rgb(241, 241, 241) !important;
+}
+.prefab-item-close {
+    color: rgb(131, 8, 8) !important;
+    background-color: rgb(241, 241, 241) !important;
+    /* background-color: rgb(235, 171, 171) !important;
+    border-radius: 10px; */
+}
+
+.errors {
+    color: rgb(71, 0, 0) !important;
+    background-color: rgb(223, 187, 187) !important;
+}
