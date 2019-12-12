@@ -57,6 +57,31 @@
                 <p class="subtitle">
                     Statistika:
                 </p>
+                <p>
+                    <div class="js-statistic-range-div">
+                    <span>Prikazano - </span>
+                        <span class="js-statistic-range-displayed" disabled dayRange="-1">
+                            Vse
+                        </span>
+                    </div>
+                    <ul class="app-list hideOverflow hidden js-statistic-range-list">
+                        <li value="-1" class="app-button prefab-item js-statistic-selection">
+                            » Vse
+                        </li>
+                        <li value="365" class="app-button prefab-item js-statistic-selection">
+                            » Zadnje leto
+                        </li>
+                        <li value="91" class="app-button prefab-item js-statistic-selection">
+                            » Zadnje 3 mesece
+                        </li>
+                        <li value="30" class="app-button prefab-item js-statistic-selection">
+                            » Zadnji mesec
+                        </li>
+                        <li value="7" class="app-button prefab-item js-statistic-selection">
+                            » Zadnji teden
+                        </li>
+                    </ul>
+                </p>
                 <div class="js-statistics"></div>
             </div>
             <div class="app-section">
@@ -135,7 +160,7 @@
                         Do datuma (opcijsko)
                     </strong></label>
                 <input type="date" id="dateEnd" class="app-input js-date-end" placeholder="Vnesite datum">
-                <div class="js-div-days-in-week hidden">
+                <div class="js-div-days-in-week hidden hideOverflow">
                     <label for="daysInWeek"><strong>
                             Dnevi v tednu
                             <br><br>

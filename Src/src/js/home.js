@@ -61,7 +61,7 @@
 
             while (displayedRoutes < numOfLastRoutes) {
                 try {
-                    if (typeof(routes[lastIndex]) !== "undefined") {
+                    if (typeof (routes[lastIndex]) !== "undefined") {
                         const route = routes[lastIndex];
 
                         const cardElement = document.createElement("div");
@@ -101,22 +101,43 @@
     }
 
     function createStatitics(page) {
-        const mainDivElement = $(page).find(".js-statistics-div");
+        const mainDivElement = $(page).find(".js-statistics");
         mainDivElement.hide();
 
         if (localStorage.getItem("routes") === null) {
             return;
         }
+        if (localStorage.getItem("statisticRange") === null) {
+            localStorage.setItem("statisticRange", JSON.stringify({ text: "Vse", range: "-1" }));
+        }
+        const statisticRangeData = JSON.parse(localStorage.getItem("statisticRange"));
+        const statisticRange = parseInt(statisticRangeData.range);
+        $(page).find(".js-statistic-range-displayed").html(statisticRangeData.text);
+        
+        mainDivElement.html("");
 
         const routes = JSON.parse(localStorage.getItem("routes"));
         const processedData = {};
 
         if (Object.keys(routes).length > 1) {
             // proccess data
+            const currDate = new Date();
             $.each(routes, (key, routeData) => {
                 if (isNaN(key)) {
                     return;
                 }
+                if (statisticRange >= 0) {
+                    try {
+                        const routeDate = new Date(routeData.date);
+                        const dateDiff = routeDate - currDate;
+                        if (dateDiff < statisticRange * 1000 * 60 * 60 * 24 * - 1) {
+                            return;
+                        }
+                    } catch (error) {
+                        console.log(error);
+                    }
+                }
+
                 if (typeof (processedData[routeData.vehicle]) === "undefined") {
                     processedData[routeData.vehicle] = {};
                 }
@@ -184,6 +205,15 @@
         }
     }
 
+    function hideShowStatisticRange(e) {
+        const ulElement = $(".js-statistic-range-list");
+
+        if (ulElement.css("display") === "none") {
+            ulElement.slideDown(250);
+        } else {
+            ulElement.slideUp(250);
+        }
+    }
 
     App.controller('home', function (page) {
         createStaticRoutesList(page);
@@ -191,6 +221,21 @@
         createLastRoutesList(page);
 
         createStatitics(page);
+
+        // display / hide statistic range options
+        $(page).find(".js-statistic-range-div").on("click", hideShowStatisticRange);
+        // select new statistic option
+        $(page).find(".js-statistic-selection").on("click", function () {
+            const ulElement = $(".js-statistic-range-list");
+            ulElement.slideUp(250);
+
+            const newText = this.innerHTML.trim().substring(2);
+            $(".js-statistic-range-displayed").html(newText);
+
+            localStorage.setItem("statisticRange", JSON.stringify({ text: newText, range: this.value.toString() }));
+
+            createStatitics(page);
+        });
 
         $(page).find(".app-button").on("click", function () {
             sessionStorage.setItem("staticRouteSelected", -1);
