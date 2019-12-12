@@ -23,7 +23,7 @@
                 try {
                     const listElement = document.createElement("li");
                     listElement.innerHTML = value.destination + " (" + value.vehicle + ", " + value.driver + ")";
-                    listElement.className = "app-button blue";
+                    listElement.className = "app-button blue static-route";
                     listElement.addEventListener("click", (e) => {
                         sessionStorage.setItem("staticRouteSelected", key);
                         App.load('addNewRoute');
@@ -64,6 +64,8 @@
                     if (typeof (routes[lastIndex]) !== "undefined") {
                         const route = routes[lastIndex];
 
+                        const comments = route.comments === null ? "" : ("<p><small>" + route.comments + "</small></p>");
+
                         const cardElement = document.createElement("div");
                         cardElement.innerHTML = ("<strong>" + route.destination + " - " + route.kmTotal + " km</strong>"
                             + "<p>" + route.vehicle + ", " + route.driver + "</p>"
@@ -71,7 +73,7 @@
                             + (new Date(route.date)).toLocaleDateString("sl-SI", {
                                 year: "numeric", month: 'long', day: 'numeric'
                             })
-                            + "</em></p>");
+                            + "</em></p>" + comments);
                         cardElement.className = "card";
                         containerElement.append(cardElement);
 
@@ -101,8 +103,9 @@
     }
 
     function createStatitics(page) {
+        const parentDivElement = $(page).find(".js-statistics-div");
         const mainDivElement = $(page).find(".js-statistics");
-        mainDivElement.hide();
+        parentDivElement.hide();
 
         if (localStorage.getItem("routes") === null) {
             return;
@@ -201,7 +204,7 @@
                 });
             });
 
-            mainDivElement.show();
+            parentDivElement.show();
         }
     }
 
