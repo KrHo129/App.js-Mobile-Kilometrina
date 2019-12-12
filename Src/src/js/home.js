@@ -61,25 +61,33 @@
 
             while (displayedRoutes < numOfLastRoutes) {
                 try {
-                    const route = routes[lastIndex];
+                    if (typeof(routes[lastIndex]) !== "undefined") {
+                        const route = routes[lastIndex];
 
-                    const cardElement = document.createElement("div");
-                    cardElement.innerHTML = (route.destination + " - " + route.kmTotal + " km"
-                        + "<br><small>" + route.vehicle + ", " + route.driver + "</small>"
-                        + "<br><small>"
-                        + (new Date(route.date)).toLocaleDateString("sl-SI", {
-                            year: "numeric", month: 'long', day: 'numeric'
-                        })
-                        + "</small>");
-                    cardElement.className = "card";
-                    containerElement.append(cardElement);
+                        const cardElement = document.createElement("div");
+                        cardElement.innerHTML = ("<strong>" + route.destination + " - " + route.kmTotal + " km</strong>"
+                            + "<p>" + route.vehicle + ", " + route.driver + "</p>"
+                            + "<p><em>"
+                            + (new Date(route.date)).toLocaleDateString("sl-SI", {
+                                year: "numeric", month: 'long', day: 'numeric'
+                            })
+                            + "</em></p>");
+                        cardElement.className = "card";
+                        containerElement.append(cardElement);
 
-                    lastIndex--;
-                    displayedRoutes++;
-                    if (lastIndex < 0) {
-                        break;
+                        lastIndex--;
+                        displayedRoutes++;
+                        if (lastIndex < 0) {
+                            break;
+                        }
+                    } else {
+                        if (lastIndex-- < 0) {
+                            break;
+                        }
                     }
                 } catch (error) {
+                    lastIndex--;
+
                     if (failCounter++ > maxFails) {
                         break;
                     }
@@ -145,7 +153,7 @@
 
                 $.each(vehicleData.driver, (driver, driverData) => {
                     const driverKm = driverData.totalKm;
-                    const kmInPercent = Math.round(driverKm / vehicleData.totalKm * 100);
+                    const kmInPercent = Math.floor(driverKm / vehicleData.totalKm * 1000) / 10;
                     const driverElement = document.createElement("p");
 
                     const driverColorElement = document.createElement("div");
@@ -171,7 +179,6 @@
                     colorIndicatorBar.appendChild(indicatorProgresElement);
                 });
             });
-            console.log(processedData);
 
             mainDivElement.show();
         }

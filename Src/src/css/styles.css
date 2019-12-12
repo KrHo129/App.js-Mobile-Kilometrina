@@ -1,87 +1,115 @@
 /* General classes */
+.app-back {
+    padding: 15px 0 15px 27px;
+    height: 14px;
+    background-repeat: no-repeat;
+    -webkit-background-size: 12px 20px;
+    background-size: 12px 20px;
+    background-position: 8px center;
+    line-height: 14px;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAoCAYAAADkDTpVAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAxJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RUQxQ0FCN0VGMjJGMTFFMjg0REFDNDBBRUVBRjJBNDkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RUQxQ0FCN0RGMjJGMTFFMjg0REFDNDBBRUVBRjJBNDkiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiBNYWNpbnRvc2giPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0iNTNBQzg4QkE2OTc3M0MxNDg4ODc1M0VDNzc3ODcwMDUiIHN0UmVmOmRvY3VtZW50SUQ9IjUzQUM4OEJBNjk3NzNDMTQ4ODg3NTNFQzc3Nzg3MDA1Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+dT5F6gAAAcNJREFUeNqslz8sA1Ecx+9UKi1ispkwMAgbs5XYTCJhlLB3uxrETsLGUgMbutaqJg0Jg5pqqqVCm1TaPt+X3ONp7n53fb/3kk/Su8v7fq/v3u/Pc4UQjsWRAQNg9/eONLDEtvgbnrpvS3wDdMT/4dkyWAUtETy8PuaaL4EcSIQ8T3HefBHURfg4Bq6p+Dz4JMTPQML0G8yCGiF+BZKmu2gKVAnxG5DW5/QiPg4qhPgdGOmeF1d8DJQJ8UcwGjQ3jric+ESIl/0XcEwM5F++J8TfwCSlQYkPgltC/B3MRK1A2IMUKBDiH34sOCYGcg9fE+INP4odEwMZfeeE+DdY6SV29AsXnBDibbDWa+TrFweCHlsmeUv92IsQz5hm3bj1wLxwx1yiDneJ1Ec+JUxa3I+stukFYdLkbFM90PKESZ0TaIp0RKqocVKFYggUCZMqJ9np6bpEmFQ46VovOM+EyQun4Ogl85UweeCUTMVERNEvcoq+YjqibSlw2hbFXETjdclpvBQL4IswyXFaR735bRAmR5zmV7Hs56ewsc89H+TBOmiHPG/aOkJtBhyhsjbPaJKdbnFJv8Uj7CEYBkmQVTd/BBgAAQDbZCXVLesAAAAASUVORK5CYII=);
+}
+
 .hidden {
-    display: none;
+  display: none;
 }
 
 .app-topbar {
-    background: #2B9;
+  background: #2b9;
 }
 
 .subtitle {
-    font-size: larger;
-    padding: 3px;
+  font-size: larger;
+  padding: 3px;
 }
 
 .card {
-    margin-bottom: 10px;
-    padding: 5px;
-    border-radius: 3px;
-    border: 1px solid rgba(136, 136, 136, 0.5);
+  margin-bottom: 10px;
+  padding: 5px;
+  border-radius: 3px;
+  border: 1px solid rgba(136, 136, 136, 0.5);
+  position: relative;
+}
+.card p {
+  margin-top: 3px;
 }
 .cardTitle {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .statistic-color-indicator {
-    width: 13px;
-    height: 13px;
-    float: left;
-    margin: 1px 5px;
+  width: 13px;
+  height: 13px;
+  float: left;
+  margin: 1px 5px;
 }
 .color-idicator-bar {
-    width: 100%;
-    height: 20px;
-    margin: 7px 0 15px 0;
-}
-.col1 {
-    background-color: turquoise;
-}
-.col2 {
-    background-color: red;
-}
-.col3 {
-    background-color: blue;
-}
-.col4 {
-    background-color: violet;
-}
-.col5 {
-    background-color: yellowgreen;
-}
-.col6 {
-    background-color: lime;
-}
-.col7 {
-    background-color: slateblue;
-}
-.col8 {
-    background-color: royalblue;
-}
-.col9 {
-    background-color: olive;
+  width: 100%;
+  height: 20px;
+  margin: 7px 0 15px 0;
+  border: 1px solid black;
 }
 
 /* Inputs */
 .prefab-list {
-    overflow: hidden;
-    display: none;
-    border: 1px solid rgba(136, 136, 136, 0.5);
-    /* border-top: none; */
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+  overflow: hidden;
+  display: none;
+  border: 1px solid rgba(136, 136, 136, 0.5);
+  /* border-top: none; */
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 .prefab-item {
-    background-color: rgb(241, 241, 241) !important;
+  background-color: rgb(241, 241, 241) !important;
 }
 .prefab-item-close {
-    color: rgb(131, 8, 8) !important;
-    background-color: rgb(241, 241, 241) !important;
-    /* background-color: rgb(235, 171, 171) !important;
+  color: rgb(131, 8, 8) !important;
+  background-color: rgb(241, 241, 241) !important;
+  /* background-color: rgb(235, 171, 171) !important;
     border-radius: 10px; */
 }
 
 .errors {
-    color: rgb(71, 0, 0) !important;
-    background-color: rgb(223, 187, 187) !important;
+  color: rgb(71, 0, 0) !important;
+  background-color: rgb(223, 187, 187) !important;
+}
+
+.col1 {
+  background-color: rgb(103, 214, 203);
+}
+.col2 {
+  background-color: rgb(236, 168, 156);
+}
+.col3 {
+  background-color: rgb(132, 117, 226);
+}
+.col4 {
+  background-color: rgb(140, 207, 126);
+}
+.col5 {
+  background-color: royalblue;
+}
+.col6 {
+  background-color: rgb(206, 125, 206);
+}
+.col7 {
+  background-color: rgb(91, 163, 91);
+}
+.col8 {
+  background-color: royalblue;
+}
+.col9 {
+  background-color: olive;
+}
+
+/* all routes page */
+.delete-btn {
+  line-height: 0 !important;
+  height: 25px !important;
+  width: 25px !important;
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  border-radius: 5px;
 }
