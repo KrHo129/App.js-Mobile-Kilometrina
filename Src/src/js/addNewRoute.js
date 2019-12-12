@@ -401,19 +401,24 @@
         let numOfDaysWithoutDeselectedDays = 0;
         const startDate = new Date(inputData.dateStart);
 
-        // if end date was entered
-        if (inputData.dateEnd !== null) {
-            const endDate = new Date(inputData.dateEnd);
-            numOfDays = ((endDate - startDate) / 1000 / 60 / 60 / 24);
-
+        function getSelectedDays() {
             const selectedDays = [];
-
             for (let i = 0; i < daysInWeekChkBoxElements.length; i++) {
                 const checkBox = daysInWeekChkBoxElements[i];
                 if (checkBox.checked) {
                     selectedDays.push(parseInt(checkBox.getAttribute("day")))
                 }
             }
+            return selectedDays;
+        }
+
+        // if end date was entered
+        if (inputData.dateEnd !== null) {
+            const endDate = new Date(inputData.dateEnd);
+            numOfDays = ((endDate - startDate) / 1000 / 60 / 60 / 24);
+
+            const selectedDays = getSelectedDays();
+
             numOfDaysWithoutDeselectedDays = numOfDays;
             for (let i = -1; i < numOfDays; i++) {
                 const currDate = addDaysToDate(i + 1, startDate);
@@ -427,6 +432,7 @@
             for (let i = -1; i < numOfDays; i++) {
                 const dataIndex = ++data.lastIndex;
                 const currDate = addDaysToDate(i + 1, startDate);
+                const selectedDays = getSelectedDays();
                 if (selectedDays.indexOf(currDate.getDay()) < 0) {
                     continue;
                 }
