@@ -42,6 +42,9 @@
             <div class="app-title">
                 Kilometrina
             </div>
+            <div class="right app-button" data-target="settings">
+                <img class="btn-image" src="src/img/settings.png" alt="settings button">
+            </div>
         </div>
         <div class="app-content">
             <div class="app-section js-last-route-div">
@@ -59,7 +62,7 @@
                 </p>
                 <p>
                     <div class="js-statistic-range-div">
-                    <span>Prikazano - </span>
+                        <span>Prikazano - </span>
                         <span class="js-statistic-range-displayed" disabled dayRange="-1">
                             Vse
                         </span>
@@ -225,22 +228,117 @@
         </div>
     </div>
 
-    <!-- Show all routes -->
 
+    <!-- Show all routes -->
     <div class="app-page" data-page="showAllRoutes">
         <div class="app-topbar">
-            <div class="left app-button app-back" data-target="home"></div>
+            <div class="left app-button" data-back data-autotitle></div>
+            <!-- <div class="left app-button app-back" data-back data-target="home"></div> -->
             <div class="app-title">
                 Vsi vnosi
             </div>
+            <div class="right app-button js-show-hide-filters">Filtri</div>
         </div>
         <div class="app-content">
+            <div class="app-section js-filters hidden">
+                <div class="subtitle hideOverflow">Filtri</div>
+                <div class="app-section">
+                    <span>Vozilo</span>
+                    <div class="js-filter-details" filter-data="vehicle"></div>
+                </div>
+                <div class="app-section">
+                    <span>Voznik</span>
+                    <div class="js-filter-details" filter-data="driver"></div>
+                </div>
+                <div class="app-section">
+                    <span>Destinacija</span>
+                    <div class="js-filter-details" filter-data="destination"></div>
+                </div>
+                <div class="app-section">
+                    <span>Datum</span>
+                    <div class="js-filter-details">
+                        Od:
+                        <input type="date" class="app-input" filter-data="dateStart" placeholder="Od datuma">
+                        Do:
+                        <input type="date" class="app-input" filter-data="dateEnd" placeholder="Do datuma">
+                    </div>
+                </div>
+                <div class="app-section">
+                    <span>Kilometri</span>
+                    <div class="js-filter-details">
+                        <input type="number" class="app-input" placeholder="Min kilometrov" filter-data="kmMin">
+                        <input type="number" class="app-input" placeholder="Max kilometrov" filter-data="kmMax">
+                    </div>
+                </div>
+                <div class="app-button blue js-filters-confirm">Potrdi filtre</div>
+
+            </div>
+
             <div class="app-section js-all-routes"></div>
 
             <div class="app-section">
                 <div class="app-button red js-delete-all">Pobriši vse vnose</div>
             </div>
         </div>
+    </div>
+
+
+    <!-- settings -->
+    <div class="app-page" data-page="settings">
+        <div class="app-topbar">
+            <div class="left app-button" data-back data-autotitle></div>
+            <div class="app-title">
+                Nastavitve
+            </div>
+        </div>
+        <div class="app-content">
+            <div class="app-section card">
+                <label class="container">
+                    <strong>Izbriši vse shranjene vnose</strong>
+                    <input type="checkbox" storage="routes" class="js-delete-storage-chkbox">
+                    <span class="checkmark"></span>
+                    <p>
+                        <small>To dejanje bo izbrisalo vse poti, ki ste jih kadarkoli shranili.</small>
+                    </p>
+                </label>
+            </div>
+            <div class="app-section card">
+                <label class="container">
+                    <strong>Izbriši vse stalne poti</strong>
+                    <input type="checkbox" storage="staticRoutes" class="js-delete-storage-chkbox">
+                    <span class="checkmark"></span>
+                    <p>
+                        <small>To dejanje bo izbrisalo vse shranjene stalne predloge za poti, ki ste jih kadarkoli
+                            shranili.</small>
+                    </p>
+                </label>
+            </div>
+            <div class="app-section card">
+                <label class="container">
+                    <strong>Izbriši vse predloge za vnos</strong>
+                    <input type="checkbox" storage="prefabData" class="js-delete-storage-chkbox">
+                    <span class="checkmark"></span>
+                    <p>
+                        <small>To dejanje bo izbrisalo vse shranjene predloge, ki se prikažejo pri novem vnosu.</small>
+                    </p>
+                </label>
+            </div>
+            <div class="app-section card">
+                <label class="container">
+                    <strong>Pobriši zanjde vnešene podatke</strong>
+                    <input type="checkbox" storage="lastEnteredData" class="js-delete-storage-chkbox">
+                    <span class="checkmark"></span>
+                    <p>
+                        <small>To dejanje bo izbrisalo shranjene podatke o zadnji poti, ki se samodejno prikažejo pri
+                            novem vnosu.</small>
+                    </p>
+                </label>
+            </div>
+            <div class="app-section">
+                <div class="app-button red js-delete-storage-btn">Potrdi</div>
+            </div>
+        </div>
+    </div>
     </div>
 
     <script src="appjs/zepto.js"></script>
@@ -252,11 +350,12 @@
     <script src="src/js/home.js"></script>
     <script src="src/js/addNewRoute.js"></script>
     <script src="src/js/showAllRoutes.js"></script>
+    <script src="src/js/settings.js"></script>
     <script>
         try {
             //App.load('checkStorage');
-            //App.restore();
-            App.load('home');
+            App.restore();
+            //App.load('home');
         } catch (err) {
             App.load('home');
             //App.load('checkStorage');
