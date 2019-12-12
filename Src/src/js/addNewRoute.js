@@ -398,31 +398,39 @@
         }
 
         let numOfDays = 0;
+        let numOfDaysWithoutDeselectedDays = 0;
         const startDate = new Date(inputData.dateStart);
 
         // if end date was entered
         if (inputData.dateEnd !== null) {
             const endDate = new Date(inputData.dateEnd);
             numOfDays = ((endDate - startDate) / 1000 / 60 / 60 / 24);
-        }
 
-        function save() {
             const selectedDays = [];
-            
+
             for (let i = 0; i < daysInWeekChkBoxElements.length; i++) {
                 const checkBox = daysInWeekChkBoxElements[i];
                 if (checkBox.checked) {
                     selectedDays.push(parseInt(checkBox.getAttribute("day")))
                 }
             }
+            numOfDaysWithoutDeselectedDays = numOfDays;
+            for (let i = -1; i < numOfDays; i++) {
+                const currDate = addDaysToDate(i + 1, startDate);
+                if (selectedDays.indexOf(currDate.getDay()) < 0) {
+                    numOfDaysWithoutDeselectedDays--;
+                }
+            }
+        }
 
+        function save() {
             for (let i = -1; i < numOfDays; i++) {
                 const dataIndex = ++data.lastIndex;
                 const currDate = addDaysToDate(i + 1, startDate);
                 if (selectedDays.indexOf(currDate.getDay()) < 0) {
                     continue;
                 }
-                
+
                 data[dataIndex] = {};
 
                 data[dataIndex].date = currDate.toISOString().split("T")[0];
@@ -482,7 +490,8 @@
         if (numOfDays > 7) {
             App.dialog({
                 title: 'Pozor!',
-                text: 'Shraniti želite ' + numOfDays + " dni te poti. Želite nadeljevati?",
+                text: 'Shraniti želite ' + numOfDaysWithoutDeselectedDays
+                    + " dni te poti. Želite nadeljevati?",
                 okButton: 'Nadaljuj',
                 cancelButton: 'Prekliči'
             }, function (choice) {
@@ -500,7 +509,7 @@
 
     function setEndDateLisener(page, inputElements) {
         daysInWeekChkBoxElements = $(page).find(".js-chkbox-days-in-week");
-        
+
         const dayWeeksElement = $(page).find(".js-div-days-in-week");
 
         inputElements.dateEnd.on("blur, change", function (e) {
