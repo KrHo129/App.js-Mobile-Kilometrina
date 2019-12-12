@@ -85,14 +85,28 @@
                 }
             }
         }
+    }
 
-
-
+    function btnDeleteAllClickEvent (e) {
+        App.dialog({
+            title: 'Pozor!',
+            text: "Želite pobrisati vse shranjene vnose?",
+            okButton: 'Nadaljuj',
+            cancelButton: 'Prekliči'
+        }, function (choice) {
+            if (choice) {
+                localStorage.removeItem("routes");
+                App.load("home");
+            }
+        });
     }
 
 
     App.controller('showAllRoutes', function (page) {
+        // creates elements for every route
         createAllRoutes(page);
 
+        // click event for delete all routes btn
+        $(page).find(".js-delete-all").on("click", btnDeleteAllClickEvent);
     })
 })();

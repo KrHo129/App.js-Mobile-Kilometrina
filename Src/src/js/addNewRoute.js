@@ -170,8 +170,6 @@
 
                 if (localStorage.getItem("lastEnteredData") !== null) {
                     const lastEnteredData = JSON.parse(localStorage.getItem("lastEnteredData"));
-                    console.log(lastEnteredData);
-                    console.log(inputElements.kmStart, lastEnteredData);
 
                     inputElements.kmStart.val(lastEnteredData.kmStart);
 
