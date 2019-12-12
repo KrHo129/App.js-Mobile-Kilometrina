@@ -60,6 +60,7 @@
     const dataStaticRoute = ["vehicle", "driver", "destination", "kmTotal", "comments"];
 
     let dataSavedCorrectly = null;
+    let daysInWeekChkBoxElements;
 
     function addDaysToDate(days, oldDate) {
         let date = new Date(oldDate.toISOString());
@@ -408,10 +409,24 @@
         }
 
         function save() {
+            const selectedDays = [];
+            
+            for (let i = 0; i < daysInWeekChkBoxElements.length; i++) {
+                const checkBox = daysInWeekChkBoxElements[i];
+                if (checkBox.checked) {
+                    selectedDays.push(parseInt(checkBox.getAttribute("day")))
+                }
+            }
+
             for (let i = -1; i < numOfDays; i++) {
                 const dataIndex = ++data.lastIndex;
                 const currDate = addDaysToDate(i + 1, startDate);
+                if (selectedDays.indexOf(currDate.getDay()) < 0) {
+                    continue;
+                }
+                
                 data[dataIndex] = {};
+
                 data[dataIndex].date = currDate.toISOString().split("T")[0];
 
                 $.each(dataToSave, (key, val) => {
@@ -485,6 +500,29 @@
         }
     }
 
+    function setEndDateLisener(page, inputElements) {
+        daysInWeekChkBoxElements = $(page).find(".js-chkbox-days-in-week");
+        
+        const dayWeeksElement = $(page).find(".js-div-days-in-week");
+
+        inputElements.dateEnd.on("blur, change", function (e) {
+            try {
+                const dateFormat = /^[0-9]{4}\-[0-9]{2}-[0-9]{2}$/;
+                if (dateFormat.test(this.value)) {
+                    if (dayWeeksElement.css("display") === "none") {
+                        dayWeeksElement.slideDown(250);
+                    }
+                } else {
+                    if (dayWeeksElement.css("display") !== "none") {
+                        dayWeeksElement.slideUp(250);
+                    }
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        });
+    }
+
     // Page controler
     App.controller('addNewRoute', function (page) {
         // find all input elemetns
@@ -502,6 +540,12 @@
         // fill input date with current date
         setCurrDate(inputElements);
 
+        // dateEndLisener - shows/hides days in week
+        setEndDateLisener(page, inputElements);
+
+        $(page).find(".js-add-route-done").on("click", function () {
+            $(page).find(".js-save").parent()[0].scrollIntoView({ behavior: "smooth", block: "end" });
+        });
 
         // save button click
         $(page).find(".js-save").on("click", function () {

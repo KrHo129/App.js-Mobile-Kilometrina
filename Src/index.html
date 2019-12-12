@@ -49,7 +49,9 @@
                     Zadnji vnosi:
                 </p>
                 <div class="js-last-routes-list"></div>
-                <div class="app-button blue">Prikaži vse</div>
+                <div class="app-button blue" data-target="showAllRoutes">
+                    Prikaži vse vnose
+                </div>
             </div>
             <div class="app-section js-statistics-div">
                 <p class="subtitle">
@@ -79,29 +81,30 @@
             <div class="app-title">
                 Dodaj novo pot
             </div>
+            <div class="right app-button js-add-route-done">Končano</div>
         </div>
         <div class="app-content">
             <div class="app-section">
                 <div class="js-input-section">
-                    <label for="vehicle">
-                        Vozilo
-                    </label>
+                    <label for="vehicle"><strong>
+                            Vozilo
+                        </strong></label>
                     <input type="text" id="vehicle" class="app-input js-vehicle" placeholder="Vnesite vozilo">
                     <div class="prefab-list js-prefab"></div>
                 </div>
 
                 <div class="js-input-section">
-                    <label for="driver">
-                        Voznik
-                    </label>
+                    <label for="driver"><strong>
+                            Voznik
+                        </strong></label>
                     <input type="text" id="driver" class="app-input js-driver" placeholder="Vnesite voznika">
                     <div class="prefab-list js-prefab"></div>
                 </div>
 
                 <div class="js-input-section">
-                    <label for="destination">
-                        Destinacija
-                    </label>
+                    <label for="destination"><strong>
+                            Destinacija
+                        </strong></label>
                     <input type="text" id="destination" class="app-input js-destination"
                         placeholder="Vnesite destinacijo">
                     <div class="prefab-list js-prefab"></div>
@@ -109,40 +112,81 @@
             </div>
 
             <div class="app-section">
-                <label for="kmStart">
-                    Začetni kilometri
-                </label>
+                <label for="kmStart"><strong>
+                        Začetni kilometri
+                    </strong></label>
                 <input type="number" id="kmStart" class="app-input js-km-start" placeholder="Vnesite št. km">
-                <label for="kmEnd">
-                    Končni kilometri
-                </label>
+                <label for="kmEnd"><strong>
+                        Končni kilometri
+                    </strong></label>
                 <input type="number" id="kmEnd" class="app-input js-km-end" placeholder="Vnesite št. km">
-                <label for="kmTotal">
-                    Opravljeni kilometri
-                </label>
+                <label for="kmTotal"><strong>
+                        Opravljeni kilometri
+                    </strong></label>
                 <input type="number" id="kmTotal" class="app-input js-km-total" placeholder="Vnesite št. km">
             </div>
             <div class="app-section">
-                <label for="dateStart">
-                    Datum
-                </label>
+                <label for="dateStart"><strong>
+                        Datum
+                    </strong></label>
                 <input type="date" id="dateStart" class="app-input js-date-start" placeholder="Vnesite datum">
 
-                <label for="dateEnd">
-                    Do datuma (opcijsko)
-                </label>
+                <label for="dateEnd"><strong>
+                        Do datuma (opcijsko)
+                    </strong></label>
                 <input type="date" id="dateEnd" class="app-input js-date-end" placeholder="Vnesite datum">
+                <div class="js-div-days-in-week hidden">
+                    <label for="daysInWeek"><strong>
+                            Dnevi v tednu
+                            <br><br>
+                        </strong></label>
+                    <label class="container">
+                        Ponedeljek
+                        <input type="checkbox" day="1" class="js-chkbox-days-in-week" checked>
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">
+                        Torek
+                        <input type="checkbox" day="2" class="js-chkbox-days-in-week" checked>
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">
+                        Sreda
+                        <input type="checkbox" day="3" class="js-chkbox-days-in-week" checked>
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">
+                        Četrtek
+                        <input type="checkbox" day="4" class="js-chkbox-days-in-week" checked>
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">
+                        Petek
+                        <input type="checkbox" day="5" class="js-chkbox-days-in-week" checked>
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">
+                        Sobota
+                        <input type="checkbox" day="6" class="js-chkbox-days-in-week" checked>
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">
+                        Nedelja
+                        <input type="checkbox" day="0" class="js-chkbox-days-in-week" checked>
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
             </div>
             <div class="app-section">
-                <label for="comments">
-                    Opombe
-                </label>
+                <label for="comments"><strong>
+                        Opombe
+                    </strong></label>
                 <textarea id="comments" cols="30" rows="3" class="app-input js-comments"
                     placeholder="Vnesite opombe"></textarea>
             </div>
             <div class="app-section">
                 <label class="container">
-                    Dodaj med stalne poti
+                    <strong>Dodaj med stalne poti</strong>
                     <input type="checkbox" class="js-add-to-static-routes">
                     <span class="checkmark"></span>
                 </label>
@@ -156,6 +200,19 @@
         </div>
     </div>
 
+    <!-- Show all routes -->
+
+    <div class="app-page" data-page="showAllRoutes">
+        <div class="app-topbar">
+            <div class="left app-button app-back" data-target="home"></div>
+            <div class="app-title">
+                Vsi vnosi
+            </div>
+        </div>
+        <div class="app-content">
+            <div class="app-section js-all-routes"></div>
+        </div>
+    </div>
 
     <script src="appjs/zepto.js"></script>
     <script src="appjs/app.min.js"></script>
@@ -165,11 +222,12 @@
     <script src="src/js/checkStorage.js"></script>
     <script src="src/js/home.js"></script>
     <script src="src/js/addNewRoute.js"></script>
+    <script src="src/js/showAllRoutes.js"></script>
     <script>
         try {
-            App.load('checkStorage');
-            //App.restore();
             //App.load('checkStorage');
+            App.restore();
+            //App.load('home');
         } catch (err) {
             App.load('checkStorage');
         }
