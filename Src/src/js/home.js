@@ -116,7 +116,7 @@
         const statisticRangeData = JSON.parse(localStorage.getItem("statisticRange"));
         const statisticRange = parseInt(statisticRangeData.range);
         $(page).find(".js-statistic-range-displayed").html(statisticRangeData.text);
-        
+
         mainDivElement.html("");
 
         const routes = JSON.parse(localStorage.getItem("routes"));
@@ -246,4 +246,20 @@
 
     });
 
+    // // android back button
+    // document.addEventListener("deviceready", function () {
+    //     document.addEventListener(function (e) {
+    //         alert("back")
+    //         const activeElement = document.activeElement;
+    //         if (activeElement.tagName.toLowerCase() === "textarea" || (activeElement.tagName.toLowerCase() === "input" && activeElement.getAttribute("type") !== "checkbox")) {
+    //             activeElement.blur();
+    //             return false;
+    //         } else if (document.querySelector(".app-page").getAttribute("data-page") !== "home") {
+    //             App.back(function () { })
+    //             return false;
+    //         }
+
+    //     });
+
+    // }, false);
 })();
