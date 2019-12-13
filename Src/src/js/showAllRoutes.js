@@ -265,5 +265,17 @@
             createAllRoutes(page, getFilterData(page));
             showHideFilterSection();
         });
+
+        // blur on button go
+        $(page).find("input").on("keydown", function (event) {
+            if (event.keyCode == 9) {
+                event.target.blur();
+                //you got tab i.e "NEXT" Btn
+            }
+            if (event.keyCode == 13) {
+                event.target.blur();
+                //you got enter i.e "GO" Btn
+            }
+        });
     });
 })();
